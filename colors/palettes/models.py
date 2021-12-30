@@ -2,7 +2,7 @@ from django.db import models
 from users.models import User
 
 from django.db.models.constraints import UniqueConstraint
-
+from simple_history.models import HistoricalRecords
 # Create your models here.
 
 class Color(models.Model):
@@ -43,7 +43,7 @@ class Palette(models.Model):
     secondary_color3 = models.ForeignKey(Color, null=True, blank=True, on_delete=models.SET_NULL, related_name='secondary3')
     secondary_color4 = models.ForeignKey(Color, null=True, blank=True, on_delete=models.SET_NULL, related_name='secondary4')
     saved_by = models.ManyToManyField(User, related_name='saved_by')
-    
+    history = HistoricalRecords()
     class Meta:
         constraints = [
             models.UniqueConstraint(

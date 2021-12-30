@@ -120,7 +120,10 @@ def save_palette(request, name):
             palette.saved_by.remove(user)
         else:
             palette.saved_by.add(user)
+        palette.save()
         return Response(status=status.HTTP_200_OK)
+
+
         
 
     
