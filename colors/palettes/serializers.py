@@ -1,8 +1,6 @@
 from rest_framework import serializers
-from rest_framework.relations import PrimaryKeyRelatedField, StringRelatedField
 
-from .models import Color, Palette, Favorites
-from users.models import User
+from .models import Color, Palette
 
 class ColorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,26 +28,6 @@ class PaletteSerializer(serializers.ModelSerializer):
         model = Palette
         exclude = ['saved_by']
 
-class PaletteRelatedField(serializers.RelatedField):
-    def display_value(self, instance):
-        return instance
 
-    def to_representation(self, value):
-        return str(value)
 
-    def to_internal_value(self, data):
-        return Palette.objects.get(name=data)
 
-class FavoritesSerializer(serializers.ModelSerializer):
-    saved_by = PrimaryKeyRelatedField(queryset=User.objects.all())
-    palette = PaletteRelatedField(queryset=Palette.objects.filter(is_public=True))
-    class Meta:
-        model = Favorites
-        fields = '__all__'
-
-class FavoritePaletteSerializer(serializers.ModelSerializer):
-    saved_by = PrimaryKeyRelatedField(queryset=User.objects.all())
-    palette = PaletteRelatedField(queryset=Palette.objects.filter(is_public=True))
-    class Meta:
-        model = Favorites
-        fields = '__all__'

@@ -1,20 +1,19 @@
 from django.shortcuts import render
-import django_filters
 from django.shortcuts import get_object_or_404
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
 from rest_framework import filters
-from rest_framework import generics, status
+from rest_framework import status
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin
-from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet, ModelViewSet
+from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
 
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .models import Color, Palette, Favorites
-from .serializers import ColorSerializer, FavoritePaletteSerializer, PaletteSerializer
+from .models import Color, Palette
+from .serializers import ColorSerializer, PaletteSerializer
 from users.models import User
 
 # Create your views here.
@@ -115,13 +114,14 @@ class FavoritesView(ListModelMixin, GenericViewSet):
 @api_view(['GET'])
 def save_palette(request, name):
     if request.method == 'GET':
-        palette = get_object_or_404(Palette, name=name)
+        palette = get_object_or_404(Palette, name=name, is_public=True)
         user = request.user
         if user in palette.saved_by.all():
             palette.saved_by.remove(user)
         else:
             palette.saved_by.add(user)
         return Response(status=status.HTTP_200_OK)
+        
 
     
     

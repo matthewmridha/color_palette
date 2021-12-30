@@ -60,11 +60,3 @@ class Palette(models.Model):
     def __str__(self):
         return self.name
 
-class Favorites(models.Model):
-    saved_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    palette = models.ForeignKey(Palette, limit_choices_to={'is_public': True}, related_name='favorites', on_delete=models.CASCADE, null=True)
-
-    
-class Favorite_Palettes(models.Model):
-    saved_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    palette = models.ManyToManyField(Palette, limit_choices_to={'is_public': True}, related_name='favorites_palettes')
