@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'dj_rest_auth.registration',
     'django_filters',
+    'simple_history',
 
     # Local
     'colors',
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'colors.urls'

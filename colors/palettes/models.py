@@ -2,6 +2,7 @@ from django.db import models
 from users.models import User
 
 from django.db.models.constraints import UniqueConstraint
+
 # Create your models here.
 
 class Color(models.Model):
@@ -42,7 +43,7 @@ class Palette(models.Model):
     secondary_color3 = models.ForeignKey(Color, null=True, blank=True, on_delete=models.SET_NULL, related_name='secondary3')
     secondary_color4 = models.ForeignKey(Color, null=True, blank=True, on_delete=models.SET_NULL, related_name='secondary4')
     saved_by = models.ManyToManyField(User, related_name='saved_by')
-
+    
     class Meta:
         constraints = [
             models.UniqueConstraint(
