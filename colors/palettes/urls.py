@@ -14,7 +14,7 @@ router.register(r'user/palettes', views.PaletteAuthenticatedView, basename='own_
 router.register(r'user/favorites', views.FavoritesView, basename='favorites')
 
 urlpatterns = format_suffix_patterns([
-    
+    path('user/save_palette/<str:name>', views.save_palette)
     
 ]) 
 

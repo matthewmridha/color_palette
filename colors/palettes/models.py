@@ -41,7 +41,7 @@ class Palette(models.Model):
     secondary_color2 = models.ForeignKey(Color, on_delete=models.PROTECT, related_name='secondary2')
     secondary_color3 = models.ForeignKey(Color, null=True, blank=True, on_delete=models.SET_NULL, related_name='secondary3')
     secondary_color4 = models.ForeignKey(Color, null=True, blank=True, on_delete=models.SET_NULL, related_name='secondary4')
-    
+    saved_by = models.ManyToManyField(User, related_name='saved_by')
 
     class Meta:
         constraints = [
@@ -65,4 +65,6 @@ class Favorites(models.Model):
     palette = models.ForeignKey(Palette, limit_choices_to={'is_public': True}, related_name='favorites', on_delete=models.CASCADE, null=True)
 
     
-    
+class Favorite_Palettes(models.Model):
+    saved_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    palette = models.ManyToManyField(Palette, limit_choices_to={'is_public': True}, related_name='favorites_palettes')

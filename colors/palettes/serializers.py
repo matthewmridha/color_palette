@@ -28,7 +28,7 @@ class PaletteSerializer(serializers.ModelSerializer):
     secondary_color4 = ColorRelatedField(queryset=Color.objects.all())
     class Meta:
         model = Palette
-        fields = '__all__'
+        exclude = ['saved_by']
 
 class PaletteRelatedField(serializers.RelatedField):
     def display_value(self, instance):
@@ -41,6 +41,13 @@ class PaletteRelatedField(serializers.RelatedField):
         return Palette.objects.get(name=data)
 
 class FavoritesSerializer(serializers.ModelSerializer):
+    saved_by = PrimaryKeyRelatedField(queryset=User.objects.all())
+    palette = PaletteRelatedField(queryset=Palette.objects.filter(is_public=True))
+    class Meta:
+        model = Favorites
+        fields = '__all__'
+
+class FavoritePaletteSerializer(serializers.ModelSerializer):
     saved_by = PrimaryKeyRelatedField(queryset=User.objects.all())
     palette = PaletteRelatedField(queryset=Palette.objects.filter(is_public=True))
     class Meta:
