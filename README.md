@@ -1,6 +1,7 @@
 # color_palette
 Back-end developer competence test for COdesign
 
+<<<<<<< HEAD
 # What it does
 1. Admin users can create colors using name and hex value
 2. Authenticated users can create/edit/delete color palettes using colors and name the palettes. Palettes can be public or private.
@@ -8,6 +9,8 @@ Back-end developer competence test for COdesign
 4. Authenticated users can save palettes to their favorites list.
 5. Palettes can be searched by palette name or colors included in palette.
 
+=======
+>>>>>>> a7d2668004fb99595c46a270d87ce5a53551c4c4
 # Run project
     1. Clone repository
     2. Create virtual env in root. Python -m venv ./filename
@@ -125,7 +128,7 @@ Should creating Color objects be available for all Authenticated Users? Hex valu
 
 Added name field to Colors but it might not be of any use. hex value enough should be sufficient. A color family OFreign Key would have been nice to group similar colors with.
 
-Ideally primary colors and secondary colors in palettes should be two many2many fields with object count validation. Spent too much time trying too implement object count validation at the model level and went with individual Foreign Keys for each color option when time ran out. Validation can be implemented at view level or serializer level as well. I would change replace the 2 primary color Foreign Key fields and 4 secondary color Foreign Key Fields to 1 Primary Color Many2Many Field and one Secondary color Many2Many Field with Many2Many Field count validation on the Serializer if I could make another change to the project.
+Ideally primary colors and secondary colors in palettes should be two many2many fields with object count validation. Spent too muc time trying too implement object count validation at the model level and went with individual Foreign Keys for each color option when time ran out. Validation can be implemented at view level or serializer level as well. I would change replace the 2 primary color Foreign Key fields and 4 secondary color Foreign Key Fields to 1 Primary Color Many2Many Field and one Secondary color Many2Many Field with Many2Many Field count validation on the Serializer if I could make another change to the project.
 
 Should ideally use separate serializers for list views and detail views to make list fetch less expensive with larger databases.
 
