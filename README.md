@@ -1,7 +1,6 @@
 # color_palette
 Back-end developer competence test for COdesign
 
-<<<<<<< HEAD
 # What it does
 1. Admin users can create colors using name and hex value
 2. Authenticated users can create/edit/delete color palettes using colors and name the palettes. Palettes can be public or private.
@@ -9,8 +8,6 @@ Back-end developer competence test for COdesign
 4. Authenticated users can save palettes to their favorites list.
 5. Palettes can be searched by palette name or colors included in palette.
 
-=======
->>>>>>> a7d2668004fb99595c46a270d87ce5a53551c4c4
 # Run project
     1. Clone repository
     2. Create virtual env in root. Python -m venv ./filename
