@@ -1,5 +1,5 @@
 # color_palette
-Back-end developer competence test for COdesign
+back end for color palette creation and saving
 
 # What it does
 1. Admin users can create colors using name and hex value
